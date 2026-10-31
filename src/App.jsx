@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, updateDoc, query, orderBy, serverTimestamp } from 'firebase/firestore';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'firebase/auth';
+import { getAuth, signInWithRedirect, GoogleAuthProvider, onAuthStateChanged, signOut } from 'firebase/auth';
 import ReactMarkdown from 'react-markdown';
 import { Search, Send, Plus, Settings, MessageSquare, Trash2, Mic, X, Edit2, Volume2, Globe, ThumbsUp, ThumbsDown, Moon, Sun, Menu, Check } from 'lucide-react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -74,7 +74,7 @@ export default function App() {
     }
   };
 
-  const login = () => signInWithPopup(auth, new GoogleAuthProvider());
+  const login = () => signInWithRedirect(auth, new GoogleAuthProvider());
   const logout = () => signOut(auth);
 
   const createNewChat = async () => {
